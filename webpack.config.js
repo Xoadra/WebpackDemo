@@ -15,8 +15,14 @@ module.exports = {
 		app: './code/index.js',
 		print: './code/print.js'
 	},
-	// Define tooling to assist in development and error sourcing
+	// Tooling for development to assist in error sourcing
 	devtool: 'inline-source-map',
+	// Development server parameters Webpack uses for live updates
+	devServer: {
+		// Identify folder for server to distribute files into
+		contentBase: './root'
+		// Server defaults to localhost:8080
+	},
 	// Plugins declared and their settings
 	plugins: [
 		new Html( { title: ' Webpack Demo ' } ),
