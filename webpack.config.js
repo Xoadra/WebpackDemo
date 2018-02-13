@@ -15,6 +15,8 @@ module.exports = {
 		app: './code/index.js',
 		print: './code/print.js'
 	},
+	// Define tooling to assist in development and error sourcing
+	devtool: 'inline-source-map',
 	// Plugins declared and their settings
 	plugins: [
 		new Html( { title: ' Webpack Demo ' } ),
