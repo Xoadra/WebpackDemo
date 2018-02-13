@@ -26,6 +26,10 @@ module.exports = {
 		// Activate hot module replacement, or real-time server and module updates
 		hot: true
 	},
+	// Bring in modules and set their rules of use
+	module: {
+		rules: [ { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] } ]
+	},
 	// Listed plugins implemented and their settings
 	plugins: [
 		// Maintenance plugin for wiping the distribution folder before builds

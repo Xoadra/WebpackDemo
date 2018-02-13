@@ -5,6 +5,8 @@
 // Bringing in used dependencies directly to bundle using Webpack
 import travel from './print.js'
 import _ from 'lodash'
+// Use hmr on stylesheets by adding a css file dependency
+import './style.css'
 
 
 
