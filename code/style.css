@@ -3,7 +3,9 @@
 
 
 .hello {
+	background: url( './dragon.png' );
 	color: red;
 }
+
 
 

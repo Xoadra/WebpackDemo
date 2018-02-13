@@ -14,17 +14,21 @@ module.exports = {
 		filename: 'bundle.js',
 		path: path.resolve( __dirname, 'root' )
 	},
-	// Seems to define modules to use and their rules of use
+	// May define modules to use and their rules of use
 	module: {
-		rules: [ {
-			// Regex to locate files to pass to the declared loader modules
-			test: /\.css$/,
-			// Loaders chosen to use for the above file types
-			use: [
-				'style-loader',
-				'css-loader'
-			]
-		} ]
+		// Rules using regex to identify file extentions to pass to declared loaders
+		rules: [
+			{
+				// Style and css loaders for stylesheets
+				test: /\.css$/,
+				use: [ 'style-loader', 'css-loader' ]
+			},
+			{
+				// File loader to on image files
+				test: /\.(png|svg|jpg|gif)$/,
+				use: [ 'file-loader' ]
+			}
+		]
 	}
 }
 
