@@ -6,6 +6,7 @@
 import _ from 'lodash'
 import './style.css'
 import Icon from './dragon.png'
+import Data from './data.xml'
 
 
 
@@ -21,11 +22,12 @@ function component( ) {
 	dragon.src = Icon
 	// Inserts image into the above element
 	element.appendChild( dragon )
+	// Display imported data
+	console.log( Data )
 	return element
 }
 
 
 document.body.appendChild( component( ) )
-
 
 

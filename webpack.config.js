@@ -18,21 +18,15 @@ module.exports = {
 	module: {
 		// Rules using regex to identify file extentions to pass to declared loaders
 		rules: [
-			{
-				// Style and css loaders for stylesheets
-				test: /\.css$/,
-				use: [ 'style-loader', 'css-loader' ]
-			},
-			{
-				// File loader to on image files
-				test: /\.(png|svg|jpg|gif)$/,
-				use: [ 'file-loader' ]
-			},
-			{
-				// Using file loader again this time for fonts
-				test: /\.(woff|woff2|eot|ttf|otf)$/,
-				use: [ 'file-loader' ]
-			}
+			// Style and css loaders for stylesheets
+			{ test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
+			// File loader to on image files
+			{ test: /\.(png|svg|jpg|gif)$/, use: [ 'file-loader' ] },
+			// Using file loader again this time for fonts
+			{ test: /\.(woff|woff2|eot|ttf|otf)$/, use: [ 'file-loader' ] },
+			// Xml, csv, and tsv file loading to display data as json
+			{ test: /\.(csv|tsv)$/, use: [ 'csv-loader' ] },
+			{ test: /\.xml$/, use: [ 'xml-loader' ] }
 		]
 	}
 }
