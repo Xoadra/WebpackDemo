@@ -3,31 +3,27 @@
 
 
 // Bringing in used dependencies directly to bundle using Webpack
+import travel from './print.js'
 import _ from 'lodash'
-import './style.css'
-import Icon from './dragon.png'
-import Data from './data.xml'
 
 
 
 function component( ) {
-	// Variables to host imported data
+	// Variables set as HTML elements
 	var element = document.createElement( 'div' )
-	var dragon = new Image( )
+	var launch = document.createElement( 'button' )
 	// Mysterious array-manipulating creature Lodash involved in the following line of code
 	element.innerHTML = _.join( [ 'Hello', 'Webpack' ], ' ' )
-	// Adds class to the element declared above using style and css loaders added to config file
-	element.classList.add( 'hello' )
-	// Set image object to the imported graphic
-	dragon.src = Icon
-	// Inserts image into the above element
-	element.appendChild( dragon )
-	// Display imported data
-	console.log( Data )
+	// Trigger imported function from clicking imported button element created above
+	launch.innerHTML = 'Launch the console, if you dare...'
+	launch.onclick = travel
+	// Insert created button element into the previously defined div 'element'
+	element.appendChild( launch )
 	return element
 }
 
 
 document.body.appendChild( component( ) )
+
 
 
