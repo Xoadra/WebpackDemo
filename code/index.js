@@ -22,8 +22,14 @@ function component( ) {
 	return element
 }
 
-
 document.body.appendChild( component( ) )
 
+if ( module.hot ) {
+	// Notify Webpack to accept an updated 'print.js' with hot module replacement active
+	module.hot.accept( './print.js', function ( ) {
+		console.log( 'Updated travel module accepted and incoming!!!' )
+		travel( )
+	} )
+}
 
 

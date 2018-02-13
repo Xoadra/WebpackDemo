@@ -4,29 +4,37 @@
 
 // Require plugins to generate html and remove output files before build
 const Html = require( 'html-webpack-plugin' )
-const Bye = require( 'clean-webpack-plugin' )
-// Appears to be used to configure where bundled files are distributed
+const Clean = require( 'clean-webpack-plugin' )
+// Pull in native Webpack plugins for use in hot module replacement
+const Webpack = require( 'webpack' )
+
+// Configures Webpack pathing such as where bundled files are distributed
 const path = require( 'path' )
 
 
 module.exports = {
 	// Entry points for Webpack's bundling process
 	entry: {
-		app: './code/index.js',
-		print: './code/print.js'
+		app: './code/index.js'
 	},
 	// Tooling for development to assist in error sourcing
 	devtool: 'inline-source-map',
-	// Development server parameters Webpack uses for live updates
+	// Development server Webpack uses for live updates defaulting to localhost:8080
 	devServer: {
 		// Identify folder for server to distribute files into
-		contentBase: './root'
-		// Server defaults to localhost:8080
+		contentBase: './root',
+		// Activate hot module replacement, or real-time server and module updates
+		hot: true
 	},
-	// Plugins declared and their settings
+	// Listed plugins implemented and their settings
 	plugins: [
-		new Bye( [ 'root' ] ),
-		new Html( { title: ' Webpack Demo ' } )
+		// Maintenance plugin for wiping the distribution folder before builds
+		new Clean( [ 'root' ] ),
+		// Html plugin for automatic template generation with given settings
+		new Html( { title: ' Webpack Demo ' } ),
+		new Webpack.NamedModulesPlugin( ),
+		// Set plugin for hot module replacement
+		new Webpack.HotModuleReplacementPlugin( )
 	],
 	// Output destination and name parameters for bundled files
 	output: {
