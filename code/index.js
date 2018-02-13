@@ -22,13 +22,19 @@ function component( ) {
 	return element
 }
 
-document.body.appendChild( component( ) )
+// Setup html element to rerender on updates to 'print.js'
+let element = component( )
+document.body.appendChild( element )
 
 if ( module.hot ) {
 	// Notify Webpack to accept an updated 'print.js' with hot module replacement active
 	module.hot.accept( './print.js', function ( ) {
 		console.log( 'Updated travel module accepted and incoming!!!' )
-		travel( )
+		// Delete old element and replace it with updated content
+		document.body.removeChild( element )
+		element = component( )
+		// Render the new, updated element along with updated child elements
+		document.body.appendChild( element )
 	} )
 }
 
