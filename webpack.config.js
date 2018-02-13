@@ -27,9 +27,15 @@ module.exports = {
 				// File loader to on image files
 				test: /\.(png|svg|jpg|gif)$/,
 				use: [ 'file-loader' ]
+			},
+			{
+				// Using file loader again this time for fonts
+				test: /\.(woff|woff2|eot|ttf|otf)$/,
+				use: [ 'file-loader' ]
 			}
 		]
 	}
 }
+
 
 
