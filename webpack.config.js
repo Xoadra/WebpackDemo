@@ -25,13 +25,15 @@ module.exports = {
 	},
 	// Plugins declared and their settings
 	plugins: [
-		new Html( { title: ' Webpack Demo ' } ),
-		new Bye( [ 'root' ] )
+		new Bye( [ 'root' ] ),
+		new Html( { title: ' Webpack Demo ' } )
 	],
 	// Output destination and name parameters for bundled files
 	output: {
 		filename: '[name].bundle.js',
-		path: path.resolve( __dirname, 'root' )
+		path: path.resolve( __dirname, 'root' ),
+		// Where files will be served at using the Webpack server script
+		publicPath: '/'
 	}
 }
 
