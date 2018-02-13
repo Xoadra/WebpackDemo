@@ -9,6 +9,7 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "webpack",
+		"watch": "webpack --watch",
 		"test": "ng test"
 	},
 	"private": true,
@@ -26,6 +27,5 @@
 		"lodash": "^4.17.5"
 	}
 }
-
 
 
