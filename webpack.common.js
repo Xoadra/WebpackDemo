@@ -13,7 +13,9 @@ const path = require( 'path' )
 module.exports = {
 	// Entry points for Webpack's bundling process
 	entry: {
-		app: './code/index.js'
+		/* app: './code/index.js' */
+		index: './code/index.js',
+		another: './code/another.js'
 	},
 	// Bring in modules and set their rules of use
 	module: {
