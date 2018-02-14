@@ -2,6 +2,8 @@
 
 
 
+// Deduplicate shared dependencies across multiple bundles with Webpack's chunk plugin
+const Webpack = require( 'webpack' )
 // Require plugins to generate html and remove output files before build
 const Html = require( 'html-webpack-plugin' )
 const Clean = require( 'clean-webpack-plugin' )
@@ -27,6 +29,8 @@ module.exports = {
 		new Clean( [ 'root' ] ),
 		// Html plugin for automatic template generation with given settings
 		new Html( { title: ' Webpack Demo ' } ),
+		// Split off shared dependencies into a separate chunk, bundled under the name below
+		new Webpack.optimize.CommonsChunkPlugin( { name: 'common' } )
 	],
 	// Output destination and name parameters for bundled files
 	output: {
