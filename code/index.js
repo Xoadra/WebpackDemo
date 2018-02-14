@@ -3,10 +3,10 @@
 
 
 // Bringing in used dependencies directly to bundle using Webpack
-import travel from './print.js'
-import _ from 'lodash'
+/* import travel from './print.js' */
+/* import _ from 'lodash' */
 // Use hmr on stylesheets by adding a css file dependency
-import './style.css'
+/* import './style.css' */
 
 
 
@@ -15,7 +15,7 @@ if ( process.env.NODE_ENV !== 'production' ) {
 	console.log( 'Development for you!' )
 }
 
-function component( ) {
+/* function component( ) {
 	// Variables set as HTML elements
 	var element = document.createElement( 'div' )
 	var launch = document.createElement( 'button' )
@@ -27,13 +27,27 @@ function component( ) {
 	// Insert created button element into the previously defined div 'element'
 	element.appendChild( launch )
 	return element
+} */
+
+// Allow the lodash module to be imported dynamically to enable dynamic code splitting
+function getComponent( ) {
+	// Have the resulting dynamically generated bundle be named after the imported module instead
+	return import ( /* webpackChunkName: "lodash" */ 'lodash' ).then( _ => {
+		var element = document.createElement( 'div' )
+		element.innerHTML = _.join( [ 'Hello', 'Webpack' ], ' ' )
+		return element
+	} ).catch( error => 'Uh oh!  Bad things happened!!!' )
 }
 
 // Setup html element to rerender on updates to 'print.js'
-let element = component( )
-document.body.appendChild( element )
+/* let element = component( )
+document.body.appendChild( element ) */
 
-if ( module.hot ) {
+getComponent( ).then( component => {
+	document.body.appendChild( component )
+} )
+
+/* if ( module.hot ) {
 	// Notify Webpack to accept an updated 'print.js' with hot module replacement active
 	module.hot.accept( './print.js', function ( ) {
 		console.log( 'Updated travel module accepted and incoming!!!' )
@@ -43,7 +57,7 @@ if ( module.hot ) {
 		// Render the new, updated element along with updated child elements
 		document.body.appendChild( element )
 	} )
-}
+} */
 
 
 
