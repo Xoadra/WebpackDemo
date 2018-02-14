@@ -8,10 +8,10 @@
 	"license": "MIT",
 	"main": "index.js",
 	"scripts": {
-		"start": "webpack-dev-server --open",
-		"server": "node server.js",
-		"build": "webpack",
-		"watch": "webpack --watch"
+		"start": "webpack-dev-server --open --config webpack.develop.js",
+		"build": "webpack --config webpack.product.js",
+		"watch": "webpack --watch",
+		"server": "node server.js"
 	},
 	"private": true,
 	"devDependencies": {
