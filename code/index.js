@@ -3,8 +3,9 @@
 
 
 // Bringing in used dependencies directly to bundle using Webpack
+import { cube } from './math.js'
 import travel from './print.js'
-import _ from 'lodash'
+/* import _ from 'lodash' */
 // Use hmr on stylesheets by adding a css file dependency
 import './style.css'
 
@@ -12,10 +13,12 @@ import './style.css'
 
 function component( ) {
 	// Variables set as HTML elements
-	var element = document.createElement( 'div' )
+	/* var element = document.createElement( 'div' ) */
+	var element = document.createElement( 'pre' )
 	var launch = document.createElement( 'button' )
 	// Mysterious array-manipulating creature Lodash involved in the following line of code
-	element.innerHTML = _.join( [ 'Hello', 'Webpack' ], ' ' )
+	/* element.innerHTML = _.join( [ 'Hello', 'Webpack' ], ' ' ) */
+	element.innerHTML = [ 'Hello Webpack!', '5^3 = ' + cube( 5 ) ].join( '\n\n' )
 	// Trigger imported function from clicking imported button element created above
 	launch.innerHTML = 'Launch the console, if you dare...'
 	launch.onclick = travel
@@ -39,5 +42,6 @@ if ( module.hot ) {
 		document.body.appendChild( element )
 	} )
 }
+
 
 

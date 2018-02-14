@@ -5,6 +5,8 @@
 // Require plugins to generate html and remove output files before build
 const Html = require( 'html-webpack-plugin' )
 const Clean = require( 'clean-webpack-plugin' )
+// Uglify code to make use of tree-shaking, or clearing out unused code from bundles
+const Uglify = require( 'uglifyjs-webpack-plugin' )
 // Pull in native Webpack plugins for use in hot module replacement
 const Webpack = require( 'webpack' )
 
@@ -36,6 +38,8 @@ module.exports = {
 		new Clean( [ 'root' ] ),
 		// Html plugin for automatic template generation with given settings
 		new Html( { title: ' Webpack Demo ' } ),
+		// Neglect unused code in final distributed bundles
+		new Uglify( ),
 		new Webpack.NamedModulesPlugin( ),
 		// Set plugin for hot module replacement
 		new Webpack.HotModuleReplacementPlugin( )
