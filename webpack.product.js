@@ -2,6 +2,8 @@
 
 
 
+// Bring in Webpack for exposing and declaring production environment
+const Webpack = require( 'webpack' )
 // Uglify code to make use of tree-shaking, or clearing out unused code from bundles
 const Uglify = require( 'uglifyjs-webpack-plugin' )
 
@@ -16,7 +18,11 @@ module.exports = amalgam( common, {
 	// Installed plugins for creating optimal production builds
 	plugins: [
 		// Exclude unused code with minified bundles plus source mapping for errors
-		new Uglify( { sourceMap: true } )
+		new Uglify( { sourceMap: true } ),
+		// Defines environment variable to sort out production dependencies
+		new Webpack.DefinePlugin( {
+			'process.env.NODE_ENV': JSON.stringify( 'production' )
+		} )
 	],
 } )
 

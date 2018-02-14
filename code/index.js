@@ -10,6 +10,11 @@ import './style.css'
 
 
 
+// Check environment variable to see if in development mode
+if ( process.env.NODE_ENV !== 'production' ) {
+	console.log( 'Development for you!' )
+}
+
 function component( ) {
 	// Variables set as HTML elements
 	var element = document.createElement( 'div' )
@@ -39,5 +44,6 @@ if ( module.hot ) {
 		document.body.appendChild( element )
 	} )
 }
+
 
 
