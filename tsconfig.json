@@ -9,9 +9,9 @@
 		"module": "es6",
 		"noImplicitAny": true,
 		"outDir": "./root",
+		"sourceMap": true,
 		"target": "es5"
 	}
 }
-
 
 
