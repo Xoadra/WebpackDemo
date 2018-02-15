@@ -22,7 +22,9 @@ module.exports = amalgam( common, {
 		// Defines environment variable to sort out production dependencies
 		new Webpack.DefinePlugin( {
 			'process.env.NODE_ENV': JSON.stringify( 'production' )
-		} )
+		} ),
+		// Prevents vendor bundle changes due to new imports of unaltered modules
+		new Webpack.HashedModuleIdsPlugin( )
 	],
 } )
 

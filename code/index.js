@@ -25,14 +25,15 @@ function component( ) {
 	// Trigger imported function from clicking imported button element created above
 	launch.innerHTML = 'Launch the console, if you dare...'
 	/* launch.onclick = travel */
+	launch.onclick = travel.bind( null, 'Webpack returns!' )
 	element.appendChild( sever )
 	// Insert created button element into the previously defined div 'element'
 	element.appendChild( launch )
 	// Lazy loading code by importing code only when needed
-	launch.onclick = pull => import( /* webpackChunkName: "print" */ './print' ).then( module => {
+	/* launch.onclick = pull => import( webpackChunkName: "print" './print' ).then( module => {
 		var print = module.default
 		print( )
-	} )
+	} ) */
 	return element
 }
 
@@ -67,5 +68,6 @@ document.body.appendChild( component )
 		document.body.appendChild( element )
 	} )
 } */
+
 
 
