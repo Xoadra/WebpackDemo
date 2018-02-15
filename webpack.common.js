@@ -14,14 +14,20 @@ const path = require( 'path' )
 
 module.exports = {
 	// Entry points for Webpack's bundling process
-	entry: {
+	/* entry: {
 		main: './code/index.js',
 		// Distinguish third-party libraries from source code by listing dependencies
 		vendor: [ 'lodash' ]
-	},
+	}, */
+	// Designate new entry point to a TypeScript file to be transpiled
+	entry: './code/index.ts',
 	// Bring in modules and set their rules of use
 	module: {
-		rules: [ { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] } ]
+		rules: [
+			{ test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
+			// TypeScript loader for transpiling to JavaScript
+			{ test: /\.tsx?$/, use: 'ts-loader', exclude: '/node_modules/' }
+		],
 	},
 	// Listed plugins implemented and their settings
 	plugins: [
