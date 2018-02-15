@@ -2,6 +2,8 @@
 
 
 
+// Allows plugin for extracting of boilerplate and manifest - whatever that means...
+const Webpack = require( 'webpack' )
 // Require plugins to generate html and remove output files before build
 const Html = require( 'html-webpack-plugin' )
 const Clean = require( 'clean-webpack-plugin' )
@@ -12,9 +14,14 @@ const path = require( 'path' )
 
 module.exports = {
 	// Entry points for Webpack's bundling process
-	entry: {
-		/* app: './code/index.js' */
+	/* entry: {
+		app: './code/index.js',
 		index: './code/index.js'
+	}, */
+	entry: {
+		main: './code/index.js',
+		// Distinguish third-party libraries from source code by listing dependencies
+		vendor: [ 'lodash' ]
 	},
 	// Bring in modules and set their rules of use
 	module: {
@@ -26,10 +33,16 @@ module.exports = {
 		new Clean( [ 'root' ] ),
 		// Html plugin for automatic template generation with given settings
 		new Html( { title: ' Webpack Demo ' } ),
+		// Perform same behavior as before but by bundling third-party libraries separately
+		new Webpack.optimize.CommonsChunkPlugin( { name: 'vendor' } ),
+		// Separates out code into its own bundle by specifying its name instead of an entry point
+		new Webpack.optimize.CommonsChunkPlugin( { name: 'manifest' } )
 	],
 	// Output destination and name parameters for bundled files
 	output: {
-		filename: '[name].bundle.js',
+		/* filename: '[name].bundle.js', */
+		// Include chunkhash in bundle names for detecting file changes for caching purposes
+		filename: '[name].[chunkhash].js',
 		// Naming parameters for bundles generated from dynamic code splitting
 		chunkFilename: '[name].bundle.js',
 		path: path.resolve( __dirname, 'root' ),
@@ -37,5 +50,6 @@ module.exports = {
 		publicPath: '/'
 	}
 }
+
 
 
