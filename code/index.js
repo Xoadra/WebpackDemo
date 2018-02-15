@@ -47,5 +47,15 @@ if ( module.hot ) {
 	} )
 }
 
+// Look for service worker status and report on its presence
+if ( 'serviceWorker' in navigator ) {
+	window.addEventListener( 'load', ( ) => {
+		navigator.serviceWorker.register( './sw.js' ).then( registration => {
+			console.log( 'The service worker is here!  ', registration )
+		} ).catch( error => {
+			console.log( 'Nope...  The service worker is too shy!  ', error )
+		} )
+	} )
+}
 
 
