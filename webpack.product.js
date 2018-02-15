@@ -6,6 +6,8 @@
 const Webpack = require( 'webpack' )
 // Uglify code to make use of tree-shaking, or clearing out unused code from bundles
 const Uglify = require( 'uglifyjs-webpack-plugin' )
+// Workbox plugin for practicing use of service workers with Webpack
+const Box = require( 'workbox-webpack-plugin' )
 
 // Apply shared Webpack settings to production setup
 const amalgam = require( 'webpack-merge' )
@@ -24,7 +26,9 @@ module.exports = amalgam( common, {
 			'process.env.NODE_ENV': JSON.stringify( 'production' )
 		} ),
 		// Prevents vendor bundle changes due to new imports of unaltered modules
-		new Webpack.HashedModuleIdsPlugin( )
+		new Webpack.HashedModuleIdsPlugin( ),
+		// Configure Workbox for fast service worker deployment and old service worker removal
+		new Box( { clientsClaim: true, skipWaiting: true } )
 	],
 } )
 
