@@ -14,10 +14,6 @@ const path = require( 'path' )
 
 module.exports = {
 	// Entry points for Webpack's bundling process
-	/* entry: {
-		app: './code/index.js',
-		index: './code/index.js'
-	}, */
 	entry: {
 		main: './code/index.js',
 		// Distinguish third-party libraries from source code by listing dependencies
@@ -40,7 +36,6 @@ module.exports = {
 	],
 	// Output destination and name parameters for bundled files
 	output: {
-		/* filename: '[name].bundle.js', */
 		// Include chunkhash in bundle names for detecting file changes for caching purposes
 		filename: '[name].[chunkhash].js',
 		// Naming parameters for bundles generated from dynamic code splitting
@@ -50,6 +45,5 @@ module.exports = {
 		publicPath: '/'
 	}
 }
-
 
 
